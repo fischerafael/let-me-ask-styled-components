@@ -94,6 +94,7 @@ const TextSeparator = styled.span`
     width: 100%;
     text-align: center;
     font-size: 0.75rem;
+    color: ${(props) => props.theme.colors.grey};
 `
 
 const Button = styled.button`
@@ -109,7 +110,13 @@ const Button = styled.button`
     cursor: pointer;
     border-radius: 0.5rem;
     gap: 1rem;
-    max-height: 3rem;
+    max-height: 3.5rem;
+
+    transition: 0.5s;
+
+    &:hover {
+        filter: brightness(75%);
+    }
 `
 
 const SecondaryButton = styled(Button)`
