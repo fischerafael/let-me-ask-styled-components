@@ -56,7 +56,7 @@ const LayoutSideBar = styled.aside`
     background: ${(props) => props.theme.colors.primary};
     display: flex;
     flex-direction: column;
-    padding: 2rem;
+    padding: 4rem 2rem;
     justify-content: center;
     align-items: flex-start;
     gap: 1rem;
