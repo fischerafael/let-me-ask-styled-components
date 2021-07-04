@@ -1,9 +1,25 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle, css } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
-  body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  ${() => resetCSS}
+`
+
+const resetCSS = css`
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background: #f8f8f8;
+        color: #29292e;
+    }
+
+    body,
+    input,
+    button,
+    textarea {
+        font: 400 16px 'Roboto', sans-serif;
+    }
 `
