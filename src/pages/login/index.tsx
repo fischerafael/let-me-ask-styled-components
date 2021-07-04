@@ -32,13 +32,13 @@ export const LoginPage = () => {
 
                 <TextSeparator>ou entre em uma sala</TextSeparator>
 
-                <form>
-                    <label>
+                <LayoutForm>
+                    <Input>
                         <span>Código da sala</span>
                         <input type="text" />
-                    </label>
+                    </Input>
                     <Button>Entrar na sala</Button>
-                </form>
+                </LayoutForm>
             </LayoutActions>
         </LayoutPage>
     )
@@ -103,15 +103,50 @@ const Button = styled.button`
     align-items: center;
     justify-content: center;
     border: none;
-    height: 3rem;
+
     background: ${(props) => props.theme.colors.primary};
     color: ${(props) => props.theme.colors.white};
     cursor: pointer;
     border-radius: 0.5rem;
     gap: 1rem;
+    max-height: 3rem;
 `
 
 const SecondaryButton = styled(Button)`
     background: ${(props) => props.theme.colors.red};
     color: ${(props) => props.theme.colors.white};
+`
+
+const LayoutForm = styled.form`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+`
+
+const Input = styled.label`
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    justify-content: center;
+    padding: 0 1rem;
+
+    width: 100%;
+    height: 100%;
+    max-height: 3.5rem;
+
+    background: white;
+    border: solid 1px ${(props) => props.theme.colors.grey};
+    border-radius: 0.5rem;
+
+    span {
+        font-size: 0.75rem;
+        color: ${(props) => props.theme.colors.grey};
+    }
+
+    input {
+        border: none;
+        outline: none;
+    }
 `
