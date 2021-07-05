@@ -9,8 +9,8 @@ export const SideBar = () => {
     return (
         <LayoutSideBar>
             <Image
-                src="/assets/illustration.svg"
-                alt=""
+                src="/assets/illustration.png"
+                alt="Ilustração de fundo"
                 style={{ width: '14rem' }}
             />
             <TextTitle>Toda pergunta tem uma resposta.</TextTitle>
