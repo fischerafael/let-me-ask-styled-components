@@ -101,6 +101,19 @@ export const SecondaryButton = styled(Button)`
     color: ${(props) => props.theme.colors.white};
 `
 
+export const OutlineButton = styled(Button)`
+    background: transparent;
+    color: ${(props) => props.theme.colors.primary};
+    font-weight: 700;
+    border: solid 1.5px ${(props) => props.theme.colors.primary};
+    max-width: 10rem;
+
+    &:hover {
+        background: ${(props) => props.theme.colors.primary};
+        color: ${(props) => props.theme.colors.white};
+    }
+`
+
 export const LayoutForm = styled.form`
     width: 100%;
     max-width: 20rem;
@@ -108,6 +121,73 @@ export const LayoutForm = styled.form`
     display: flex;
     flex-direction: column;
     gap: 1rem;
+`
+
+export const LayoutHeader = styled.header`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 15vh;
+    border-bottom: solid 1px ${(props) => props.theme.colors.grey};
+`
+
+export const LayoutNavBar = styled.nav`
+    display: flex;
+    padding: 0 1rem;
+    width: 100%;
+    max-width: 60rem;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+`
+
+export const NavBarActionsSection = styled.section`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 1rem;
+`
+
+export const InputWithIcon = styled.div`
+    display: flex;
+    border: solid 1.5px ${(props) => props.theme.colors.primary};
+    border-radius: 0.5rem;
+    overflow: hidden;
+    height: 3.5rem;
+
+    div {
+        width: 3.5rem;
+        height: 3.5rem;
+        display: flex;
+
+        svg {
+            background: ${(props) => props.theme.colors.primary};
+            color: white;
+            width: 5rem;
+            padding: 0.75rem;
+            height: 100%;
+        }
+    }
+
+    section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        padding: 0 1rem;
+
+        span {
+            font-size: 0.75rem;
+            color: ${(props) => props.theme.colors.grey};
+        }
+
+        input {
+            border: none;
+            outline: none;
+        }
+    }
 `
 
 export const Input = styled.label`
@@ -118,8 +198,7 @@ export const Input = styled.label`
     padding: 0 1rem;
 
     width: 100%;
-    height: 100%;
-    max-height: 3.5rem;
+    height: 3.5rem;
 
     background: white;
     border: solid 1px ${(props) => props.theme.colors.grey};
