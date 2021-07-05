@@ -59,6 +59,20 @@ export const TextSeparator = styled.span`
     color: ${(props) => props.theme.colors.grey};
 `
 
+export const TextAnchorTextHelper = styled.h3`
+    width: 100%;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: ${(props) => props.theme.colors.grey};
+`
+
+export const TextAnchor = styled.a`
+    cursor: pointer;
+    font-weight: 700;
+    color: ${(props) => props.theme.colors.pink};
+`
+
 export const Button = styled.button`
     width: 100%;
     height: 100%;

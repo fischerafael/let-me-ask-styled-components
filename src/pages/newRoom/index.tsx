@@ -7,6 +7,7 @@ import {
     TextTitle,
     TextSubTitle,
     LayoutActions,
+    TextAnchorTextHelper,
     SecondaryButton,
     TextSeparator,
     LayoutForm,
@@ -15,6 +16,7 @@ import {
 
 import { SideBar } from '../../components/SideBar'
 import { CustomInput } from '../../components/Input'
+import { CustomLink } from '../../components/CustomLink'
 
 export const NewRoomPage = () => {
     return (
@@ -32,6 +34,10 @@ export const NewRoomPage = () => {
                 <LayoutForm>
                     <CustomInput type="text" label="Nome da sala" />
                     <Button>Entrar na sala</Button>
+                    <TextAnchorTextHelper>
+                        Quer entrar em uma sala já existente?{' '}
+                        <CustomLink href="/">Clique aqui</CustomLink>
+                    </TextAnchorTextHelper>
                 </LayoutForm>
             </LayoutActions>
         </LayoutPage>
