@@ -130,6 +130,7 @@ export const LayoutHeader = styled.header`
     width: 100%;
     height: 15vh;
     border-bottom: solid 1px ${(props) => props.theme.colors.grey};
+    background: ${(props) => props.theme.colors.light};
 `
 
 export const LayoutNavBar = styled.nav`
@@ -156,6 +157,7 @@ export const InputWithIcon = styled.div`
     border-radius: 0.5rem;
     overflow: hidden;
     height: 3.5rem;
+    background: white;
 
     div {
         width: 3.5rem;
