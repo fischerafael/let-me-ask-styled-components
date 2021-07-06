@@ -203,7 +203,7 @@ export const LayoutCard = styled.article`
     box-shadow: 0 2px 1rem rgba(0, 0, 0, 0.04);
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 2rem;
 
     &:hover {
         box-shadow: 0 2px 1rem rgba(0, 0, 0, 0.1);
@@ -214,6 +214,7 @@ export const LayoutCardHeader = styled.header``
 
 export const LayoutCardFooter = styled.footer`
     display: flex;
+    justify-content: space-between;
 `
 
 export const NavBarActionsSection = styled.section`

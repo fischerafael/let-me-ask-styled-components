@@ -1,4 +1,11 @@
 import {
+    UserCircleIcon,
+    CheckIcon,
+    ChatAltIcon,
+    TrashIcon
+} from '@heroicons/react/outline'
+
+import {
     Image,
     OutlineButton,
     LayoutHeader,
@@ -53,14 +60,46 @@ export const DashboardPage = () => {
                         </LayoutCardHeader>
 
                         <LayoutCardFooter>
-                            <section>
-                                <img src="/" alt="user icon" />
-                                <p>Rachel Laguna Martins</p>
+                            <section
+                                style={{
+                                    display: 'flex',
+                                    gap: '0.5rem',
+                                    alignItems: 'center'
+                                }}
+                            >
+                                <UserCircleIcon
+                                    style={{
+                                        width: '2rem',
+                                        height: '2rem',
+                                        color: '#835AFD'
+                                    }}
+                                />
+                                <p style={{ color: '#737380' }}>
+                                    Rachel Laguna Martins
+                                </p>
                             </section>
-                            <section>
-                                <img src="" alt="check" />
-                                <img src="" alt="comment" />
-                                <img src="" alt="trash" />
+                            <section style={{ display: 'flex', gap: '0.5rem' }}>
+                                <CheckIcon
+                                    style={{
+                                        width: '1.5rem',
+                                        height: '1.5rem',
+                                        color: '#737380'
+                                    }}
+                                />
+                                <ChatAltIcon
+                                    style={{
+                                        width: '1.5rem',
+                                        height: '1.5rem',
+                                        color: '#737380'
+                                    }}
+                                />
+                                <TrashIcon
+                                    style={{
+                                        width: '1.5rem',
+                                        height: '1.5rem',
+                                        color: '#737380'
+                                    }}
+                                />
                             </section>
                         </LayoutCardFooter>
                     </LayoutCard>
