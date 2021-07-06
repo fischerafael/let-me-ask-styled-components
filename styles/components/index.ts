@@ -39,6 +39,11 @@ export const TextTitle = styled.h1`
     color: white;
 `
 
+export const TextTitleDark = styled.h1`
+    font-size: 1.5rem;
+    color: ${(props) => props.theme.colors.dark};
+`
+
 export const TextSubTitle = styled.h2`
     font-size: 1rem;
     line-height: 1.5rem;
@@ -71,6 +76,19 @@ export const TextAnchor = styled.a`
     cursor: pointer;
     font-weight: 700;
     color: ${(props) => props.theme.colors.pink};
+`
+
+export const TextHashtag = styled.p`
+    background: ${(props) => props.theme.colors.pink};
+    padding: 0 1rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    font-weight: 700;
+    color: white;
+    cursor: default;
 `
 
 export const Button = styled.button`
@@ -131,6 +149,34 @@ export const LayoutHeader = styled.header`
     height: 15vh;
     border-bottom: solid 1px ${(props) => props.theme.colors.grey};
     background: ${(props) => props.theme.colors.light};
+`
+
+export const LayoutMain = styled.main`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 85vh;
+    background: ${(props) => props.theme.colors.light};
+`
+
+export const LayoutHeaderMain = styled.section`
+    display: flex;
+    padding: 0 1rem;
+    width: 100%;
+    max-width: 60rem;
+    height: 15vh;
+    gap: 1rem;
+    align-items: center;
+`
+
+export const LayoutMainMain = styled.ul`
+    display: flex;
+    padding: 0 1rem;
+    max-width: 60rem;
+    width: 100%;
+    height: 70vh;
 `
 
 export const LayoutNavBar = styled.nav`
