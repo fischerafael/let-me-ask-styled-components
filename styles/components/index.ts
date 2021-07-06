@@ -91,6 +91,10 @@ export const TextHashtag = styled.p`
     cursor: default;
 `
 
+export const TextParagraph = styled.p`
+    line-height: 1.5;
+`
+
 export const Button = styled.button`
     width: 100%;
     height: 100%;
@@ -177,6 +181,8 @@ export const LayoutMainMain = styled.ul`
     max-width: 60rem;
     width: 100%;
     height: 70vh;
+    flex-direction: column;
+    gap: 1rem;
 `
 
 export const LayoutNavBar = styled.nav`
@@ -187,6 +193,27 @@ export const LayoutNavBar = styled.nav`
     height: 100%;
     justify-content: space-between;
     align-items: center;
+`
+
+export const LayoutCard = styled.article`
+    background: white;
+    width: 100%;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 1rem rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &:hover {
+        box-shadow: 0 2px 1rem rgba(0, 0, 0, 0.1);
+    }
+`
+
+export const LayoutCardHeader = styled.header``
+
+export const LayoutCardFooter = styled.footer`
+    display: flex;
 `
 
 export const NavBarActionsSection = styled.section`

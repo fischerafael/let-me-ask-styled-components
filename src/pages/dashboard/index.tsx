@@ -6,9 +6,13 @@ import {
     LayoutMain,
     LayoutHeaderMain,
     LayoutMainMain,
+    LayoutCard,
+    LayoutCardHeader,
+    LayoutCardFooter,
     NavBarActionsSection,
     TextTitleDark,
-    TextHashtag
+    TextHashtag,
+    TextParagraph
 } from '../../../styles/components'
 
 import { ChatAlt2Icon } from '@heroicons/react/outline'
@@ -39,13 +43,16 @@ export const DashboardPage = () => {
                 </LayoutHeaderMain>
 
                 <LayoutMainMain>
-                    <li>
-                        <p>
-                            Olá, eu gostaria de saber como criar componente
-                            funcional dentro do React e se existe diferença na
-                            performance entre um componente com classes?
-                        </p>
-                        <footer>
+                    <LayoutCard>
+                        <LayoutCardHeader>
+                            <TextParagraph>
+                                Olá, eu gostaria de saber como criar componente
+                                funcional dentro do React e se existe diferença
+                                na performance entre um componente com classes?
+                            </TextParagraph>
+                        </LayoutCardHeader>
+
+                        <LayoutCardFooter>
                             <section>
                                 <img src="/" alt="user icon" />
                                 <p>Rachel Laguna Martins</p>
@@ -55,8 +62,8 @@ export const DashboardPage = () => {
                                 <img src="" alt="comment" />
                                 <img src="" alt="trash" />
                             </section>
-                        </footer>
-                    </li>
+                        </LayoutCardFooter>
+                    </LayoutCard>
                 </LayoutMainMain>
             </LayoutMain>
         </div>
