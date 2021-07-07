@@ -1,11 +1,4 @@
 import {
-    UserCircleIcon,
-    CheckIcon,
-    ChatAltIcon,
-    TrashIcon
-} from '@heroicons/react/outline'
-
-import {
     Image,
     OutlineButton,
     LayoutHeader,
@@ -13,7 +6,7 @@ import {
     LayoutMain,
     LayoutHeaderMain,
     LayoutMainMain,
-    LayoutCard,
+    LayoutDashboardPage,
     LayoutCardHeader,
     LayoutCardFooter,
     NavBarActionsSection,
@@ -24,10 +17,11 @@ import {
 
 import { ChatAlt2Icon } from '@heroicons/react/outline'
 import { CustomInputWithIcon } from '../../components/InputWithIcon'
+import { Card } from '../../components/Card'
 
 export const DashboardPage = () => {
     return (
-        <div>
+        <LayoutDashboardPage>
             <LayoutHeader>
                 <LayoutNavBar>
                     <Image
@@ -43,68 +37,64 @@ export const DashboardPage = () => {
                     </NavBarActionsSection>
                 </LayoutNavBar>
             </LayoutHeader>
-            <LayoutMain>
+
+            <main
+                style={{
+                    minHeight: '85vh',
+                    background: '#f8f8f8',
+                    display: 'flex',
+                    alignItems: 'center',
+                    flexDirection: 'column',
+                    padding: '1rem 0'
+                }}
+            >
+                <section
+                    style={{
+                        width: '100%',
+                        maxWidth: '60rem',
+                        padding: '0 1rem',
+                        display: 'flex',
+                        gap: '1rem',
+                        alignItems: 'center',
+                        height: '10vh'
+                    }}
+                >
+                    <h1 style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
+                        Sala React
+                    </h1>
+                    <h2
+                        style={{
+                            background: '#E559F9',
+                            fontSize: '1rem',
+                            padding: '0rem 2rem',
+                            height: '2rem',
+                            borderRadius: '1rem',
+                            display: 'flex',
+                            alignItems: 'center',
+                            color: 'white'
+                        }}
+                    >
+                        4 perguntas
+                    </h2>
+                </section>
+
+                <section style={{ display: 'flex' }}>
+                    <h1>oi</h1>
+                </section>
+            </main>
+
+            {/* <LayoutMain>
                 <LayoutHeaderMain>
                     <TextTitleDark>Sala React</TextTitleDark>
                     <TextHashtag>4 perguntas</TextHashtag>
                 </LayoutHeaderMain>
 
                 <LayoutMainMain>
-                    <LayoutCard>
-                        <LayoutCardHeader>
-                            <TextParagraph>
-                                Olá, eu gostaria de saber como criar componente
-                                funcional dentro do React e se existe diferença
-                                na performance entre um componente com classes?
-                            </TextParagraph>
-                        </LayoutCardHeader>
-
-                        <LayoutCardFooter>
-                            <section
-                                style={{
-                                    display: 'flex',
-                                    gap: '0.5rem',
-                                    alignItems: 'center'
-                                }}
-                            >
-                                <UserCircleIcon
-                                    style={{
-                                        width: '2rem',
-                                        height: '2rem',
-                                        color: '#835AFD'
-                                    }}
-                                />
-                                <p style={{ color: '#737380' }}>
-                                    Rachel Laguna Martins
-                                </p>
-                            </section>
-                            <section style={{ display: 'flex', gap: '0.5rem' }}>
-                                <CheckIcon
-                                    style={{
-                                        width: '1.5rem',
-                                        height: '1.5rem',
-                                        color: '#737380'
-                                    }}
-                                />
-                                <ChatAltIcon
-                                    style={{
-                                        width: '1.5rem',
-                                        height: '1.5rem',
-                                        color: '#737380'
-                                    }}
-                                />
-                                <TrashIcon
-                                    style={{
-                                        width: '1.5rem',
-                                        height: '1.5rem',
-                                        color: '#737380'
-                                    }}
-                                />
-                            </section>
-                        </LayoutCardFooter>
-                    </LayoutCard>
+                    <Card />
+                    <Card />
+                    <Card />
                 </LayoutMainMain>
-            </LayoutMain>
-        </div>
+            </LayoutMain> */}
+        </LayoutDashboardPage>
     )
 }

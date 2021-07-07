@@ -8,6 +8,14 @@ export const LayoutPage = styled.div`
     grid-template-columns: 1fr 1fr;
 `
 
+export const LayoutDashboardPage = styled.main`
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+`
+
 export const LayoutSideBar = styled.aside`
     background: ${(props) => props.theme.colors.primary};
     display: flex;
@@ -161,13 +169,12 @@ export const LayoutMain = styled.main`
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-    height: 85vh;
     background: ${(props) => props.theme.colors.light};
+    padding: 1rem;
 `
 
 export const LayoutHeaderMain = styled.section`
     display: flex;
-    padding: 0 1rem;
     width: 100%;
     max-width: 60rem;
     height: 15vh;
@@ -177,10 +184,8 @@ export const LayoutHeaderMain = styled.section`
 
 export const LayoutMainMain = styled.ul`
     display: flex;
-    padding: 0 1rem;
     max-width: 60rem;
     width: 100%;
-    height: 70vh;
     flex-direction: column;
     gap: 1rem;
 `
