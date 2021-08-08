@@ -2,7 +2,7 @@ import { handleNavigateTo } from '../utils/handleNavigateTo'
 
 export const PageLogin = () => {
     return (
-        <div>
+        <div className="w-screen h-screen flex items-center justify-center">
             <button onClick={() => handleNavigateTo('/rooms/new')}>
                 Crie sua sala com o Google
             </button>
