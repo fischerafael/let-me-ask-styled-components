@@ -1,11 +1,15 @@
-import { handleNavigateTo } from '../utils/handleNavigateTo'
+import { useAuth } from '../hooks/useAuth'
 
 export const PageLogin = () => {
+    const { signInWithGoogle, user } = useAuth()
+
+    const onClick = async () => {
+        await signInWithGoogle()
+    }
+
     return (
         <div className="w-screen h-screen flex flex-col items-center justify-center">
-            <button onClick={() => handleNavigateTo('/rooms/new')}>
-                Crie sua sala com o Google
-            </button>
+            <button onClick={onClick}>Crie sua sala com o Google</button>
             <input type="text" placeholder="Digite o código da sala" />
             <button>Entrar na sala</button>
         </div>
