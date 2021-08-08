@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         //verifies if user is logged
-        auth.onAuthStateChanged((user) => {
+        const unsubscribe = auth.onAuthStateChanged((user) => {
             if (user) {
                 const { displayName, photoURL, uid } = user
 
@@ -34,6 +34,8 @@ export const AuthProvider = ({ children }) => {
                 })
             }
         })
+
+        return () => unsubscribe()
     }, [])
 
     const signInWithGoogle = async () => {
