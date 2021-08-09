@@ -1,6 +1,16 @@
+import { useAuth } from '../../hooks/useAuth'
 import { MainButton, RedButton } from '../atoms/Button'
 
-export const PublicMainLogin = ({ onClick }) => {
+export const PublicMainLogin = () => {
+    const { signInWithGoogle, user } = useAuth()
+
+    console.log(user)
+
+    const onClick = async (e) => {
+        e.preventDefault()
+        await signInWithGoogle()
+    }
+
     return (
         <main className="bg-purple-50 h-screen w-full flex flex-col items-center justify-center px-4 gap-4">
             <img src="/assets/logo.svg" alt="" className="w-32" />
