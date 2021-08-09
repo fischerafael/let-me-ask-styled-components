@@ -32,6 +32,8 @@ export const AuthProvider = ({ children }) => {
                     name: displayName,
                     avatar: photoURL
                 })
+
+                handleNavigateTo('/rooms/new')
             }
         })
 

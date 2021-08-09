@@ -4,7 +4,10 @@ import { useAuth } from '../hooks/useAuth'
 export const PageLogin = () => {
     const { signInWithGoogle, user } = useAuth()
 
-    const onClick = async () => {
+    console.log(user)
+
+    const onClick = async (e) => {
+        e.preventDefault()
         await signInWithGoogle()
     }
 
@@ -26,7 +29,12 @@ export const PageLogin = () => {
                         <img src="/assets/google.svg" alt="" />
                         Crie sua sala com o Google
                     </RedButton>
-                    <hr />
+                    <div className="flex w-full items-center gap-4 py-4">
+                        <hr className="w-full" />
+                        <p>ou</p>
+                        <hr className="w-full" />
+                    </div>
+
                     <input
                         type="text"
                         placeholder="Digite o código da sala"
