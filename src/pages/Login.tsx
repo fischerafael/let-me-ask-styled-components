@@ -1,3 +1,4 @@
+import { RedButton } from '../components/atoms/Button'
 import { useAuth } from '../hooks/useAuth'
 
 export const PageLogin = () => {
@@ -21,13 +22,11 @@ export const PageLogin = () => {
             <main className="bg-purple-50 h-screen w-full flex flex-col items-center justify-center px-4 gap-4">
                 <img src="/assets/logo.svg" alt="" className="w-32" />
                 <form className="flex flex-col w-3/4 gap-4">
-                    <button
-                        className="bg-red-500 px-8 py-4 text-white font-semibold text-base flex gap-4 items-center justify-center"
-                        onClick={onClick}
-                    >
+                    <RedButton className="" onClick={onClick}>
                         <img src="/assets/google.svg" alt="" />
                         Crie sua sala com o Google
-                    </button>
+                    </RedButton>
+                    <hr />
                     <input type="text" placeholder="Digite o código da sala" />
                     <button>Entrar na sala</button>
                 </form>
