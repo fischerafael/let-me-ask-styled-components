@@ -27,7 +27,11 @@ export const PageLogin = () => {
                         Crie sua sala com o Google
                     </RedButton>
                     <hr />
-                    <input type="text" placeholder="Digite o código da sala" />
+                    <input
+                        type="text"
+                        placeholder="Digite o código da sala"
+                        className=""
+                    />
                     <button>Entrar na sala</button>
                 </form>
             </main>
