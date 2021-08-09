@@ -1,4 +1,4 @@
-import { RedButton } from '../components/atoms/Button'
+import { MainButton, RedButton } from '../components/atoms/Button'
 import { useAuth } from '../hooks/useAuth'
 
 export const PageLogin = () => {
@@ -30,9 +30,9 @@ export const PageLogin = () => {
                     <input
                         type="text"
                         placeholder="Digite o código da sala"
-                        className=""
+                        className="h-14 flex items-center justify-center px-8 border border-gray-200 rounded-lg"
                     />
-                    <button>Entrar na sala</button>
+                    <MainButton>Entrar na sala</MainButton>
                 </form>
             </main>
         </div>
