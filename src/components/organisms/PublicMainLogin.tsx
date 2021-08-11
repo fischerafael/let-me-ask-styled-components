@@ -7,7 +7,7 @@ export const PublicMainLogin = () => {
     const { signInWithGoogle } = useAuth()
     const { setRoomId, roomId, joinRoom } = useRoom()
 
-    const onClick = async (e) => {
+    const onClick = async (e: any) => {
         e.preventDefault()
         await signInWithGoogle()
     }
