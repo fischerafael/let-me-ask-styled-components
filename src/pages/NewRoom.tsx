@@ -11,8 +11,6 @@ export const PageNewRoom = () => {
 
     const [formData, setFormData] = useState({ newRoom: '' })
 
-    console.log('formData', formData)
-
     const handleCreateRoom = async (e: FormEvent) => {
         e.preventDefault()
 
@@ -24,8 +22,8 @@ export const PageNewRoom = () => {
             })
 
             console.log(firebaseRoom)
-            return
-            handleNavigateTo(`/rooms/${firebaseRoom}`)
+
+            handleNavigateTo(`/rooms/${firebaseRoom.key}`)
         } catch (e) {}
     }
 

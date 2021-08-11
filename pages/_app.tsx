@@ -5,14 +5,17 @@ import { AuthProvider } from '../src/hooks/useAuth'
 
 import '../styles/globals.css'
 import '../src/services/firebase'
+import { RoomProvider } from '../src/hooks/useRoom'
 
 export default function App({ Component, pageProps }) {
     return (
         <AuthProvider>
-            <ThemeProvider theme={theme}>
-                <GlobalStyle />
-                <Component {...pageProps} />
-            </ThemeProvider>
+            <RoomProvider>
+                <ThemeProvider theme={theme}>
+                    <GlobalStyle />
+                    <Component {...pageProps} />
+                </ThemeProvider>
+            </RoomProvider>
         </AuthProvider>
     )
 }
