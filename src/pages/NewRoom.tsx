@@ -4,6 +4,7 @@ import { PublicSideBar } from '../components/organisms/PublicSideBar'
 import { TemplatePublic } from '../components/templates/TemplatePublic'
 import { useAuth } from '../hooks/useAuth'
 import { database } from '../services/firebase'
+import { handleNavigateTo } from '../utils/handleNavigateTo'
 
 export const PageNewRoom = () => {
     const { user } = useAuth()
@@ -21,6 +22,10 @@ export const PageNewRoom = () => {
                 title: formData.newRoom,
                 authorId: user.id
             })
+
+            console.log(firebaseRoom)
+            return
+            handleNavigateTo(`/rooms/${firebaseRoom}`)
         } catch (e) {}
     }
 

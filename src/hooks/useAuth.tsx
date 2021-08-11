@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import { createContext, useContext, useEffect, useState } from 'react'
 import { auth, firebase } from '../services/firebase'
 import { handleNavigateTo } from '../utils/handleNavigateTo'
@@ -16,7 +17,12 @@ interface AuthContextProps {
 const AuthContext = createContext({} as AuthContextProps)
 
 export const AuthProvider = ({ children }) => {
+    const { pathname } = useRouter()
+    console.log('pathname', pathname)
+
     const [user, setUser] = useState({ id: '', name: '', avatar: '' })
+
+    console.log('user_context', user)
 
     useEffect(() => {
         //verifies if user is logged
@@ -33,7 +39,7 @@ export const AuthProvider = ({ children }) => {
                     avatar: photoURL
                 })
 
-                handleNavigateTo('/rooms/new')
+                if (pathname === '/') handleNavigateTo('/rooms/new')
             }
         })
 

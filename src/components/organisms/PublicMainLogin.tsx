@@ -2,9 +2,7 @@ import { useAuth } from '../../hooks/useAuth'
 import { MainButton, RedButton } from '../atoms/Button'
 
 export const PublicMainLogin = () => {
-    const { signInWithGoogle, user } = useAuth()
-
-    console.log(user)
+    const { signInWithGoogle } = useAuth()
 
     const onClick = async (e) => {
         e.preventDefault()
