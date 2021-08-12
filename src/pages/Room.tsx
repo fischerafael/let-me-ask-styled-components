@@ -14,8 +14,11 @@ export const PageRoom = ({ roomId }: { roomId: string }) => {
             </header>
 
             <main className="max-w-screen-lg w-full flex flex-col py-8">
-                <section className="w-full">
+                <section className="w-full flex gap-4 items-center">
                     <h2 className="font-bold text-xl">Sala React Q&A</h2>
+                    <span className="bg-pink-500 p-2 px-4 rounded-full text-white font-bold text-xs">
+                        4 perguntas
+                    </span>
                 </section>
             </main>
         </div>
