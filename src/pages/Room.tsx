@@ -12,6 +12,12 @@ export const PageRoom = ({ roomId }: { roomId: string }) => {
                     </section>
                 </section>
             </header>
+
+            <main className="max-w-screen-lg w-full flex flex-col py-8">
+                <section className="w-full">
+                    <h2 className="font-bold text-xl">Sala React Q&A</h2>
+                </section>
+            </main>
         </div>
     )
 }
