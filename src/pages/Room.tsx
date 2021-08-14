@@ -1,17 +1,17 @@
 import { FormEvent } from 'react'
+import { MainButton } from '../components/atoms/Button'
 import { useAuth } from '../hooks/useAuth'
 import { useQuestion } from '../hooks/useQuestion'
 
 export const PageRoom = ({ roomId }: { roomId: string }) => {
+    const room = roomId
     const { user } = useAuth()
     const { newQuestion, setNewQuestion, sendQuestion } = useQuestion()
 
     const onSubmit = (e: FormEvent) => {
         e.preventDefault()
-        sendQuestion({ user: user, room: roomId, question: newQuestion })
+        sendQuestion({ user, room, question: newQuestion })
     }
-
-    console.log(newQuestion)
 
     return (
         <div className="bg-purple-50 w-screen h-screen flex flex-col items-center">
@@ -37,15 +37,23 @@ export const PageRoom = ({ roomId }: { roomId: string }) => {
 
                 <form
                     onSubmit={onSubmit}
-                    className="w-full flex gap-4 items-center"
+                    className="w-full flex flex-col gap-8 items-center"
                 >
                     <textarea
                         value={newQuestion}
                         onChange={(e) => setNewQuestion(e.target.value)}
-                        className="w-full rounded-lg p-4 h-32"
+                        className="w-full rounded-lg p-4 h-32 outline-none"
                     />
 
-                    <button type="submit">Enviar Pergunta</button>
+                    <section className="flex justify-between items-center w-full">
+                        <p className="text-xs">
+                            Para enviar uma pergunta,{' '}
+                            <span className="text-pink-500">
+                                faça seu login.
+                            </span>
+                        </p>
+                        <MainButton type="submit">Enviar Pergunta</MainButton>
+                    </section>
                 </form>
             </main>
         </div>
