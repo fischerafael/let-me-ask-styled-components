@@ -18,7 +18,6 @@ const AuthContext = createContext({} as AuthContextProps)
 
 export const AuthProvider = ({ children }) => {
     const { pathname } = useRouter()
-    console.log('pathname', pathname)
 
     const [user, setUser] = useState({ id: '', name: '', avatar: '' })
 
