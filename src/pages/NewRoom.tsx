@@ -1,30 +1,17 @@
-import { FormEvent, useState } from 'react'
+import { FormEvent } from 'react'
 import { PrivateMainNewRoom } from '../components/organisms/PrivateMainNewRoom'
 import { PublicSideBar } from '../components/organisms/PublicSideBar'
 import { TemplatePublic } from '../components/templates/TemplatePublic'
 import { useAuth } from '../hooks/useAuth'
-import { database } from '../services/firebase'
-import { handleNavigateTo } from '../utils/handleNavigateTo'
+import { useRoom } from '../hooks/useRoom'
 
 export const PageNewRoom = () => {
     const { user } = useAuth()
+    const { createRoom, roomName, setRoomName } = useRoom()
 
-    const [formData, setFormData] = useState({ newRoom: '' })
-
-    const handleCreateRoom = async (e: FormEvent) => {
+    const onSubmit = (e: FormEvent) => {
         e.preventDefault()
-
-        try {
-            const roomReference = database.ref('rooms')
-            const firebaseRoom = await roomReference.push({
-                title: formData.newRoom,
-                authorId: user.id
-            })
-
-            console.log(firebaseRoom)
-
-            handleNavigateTo(`/rooms/${firebaseRoom.key}`)
-        } catch (e) {}
+        createRoom(roomName, user.id)
     }
 
     return (
@@ -32,11 +19,9 @@ export const PageNewRoom = () => {
             sidebar={<PublicSideBar />}
             main={
                 <PrivateMainNewRoom
-                    onSubmit={handleCreateRoom}
-                    value={formData.newRoom}
-                    onChange={(e) =>
-                        setFormData({ ...formData, newRoom: e.target.value })
-                    }
+                    onSubmit={onSubmit}
+                    value={roomName}
+                    onChange={(e: any) => setRoomName(e.target.value)}
                 />
             }
         />

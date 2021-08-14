@@ -5,15 +5,17 @@ import { handleNavigateTo } from '../utils/handleNavigateTo'
 interface Props {
     roomId: string
     setRoomId: (e: any) => void
+    roomName: string
+    setRoomName: (e: any) => void
     joinRoom: () => Promise<void>
+    createRoom: (roomTitle: string, authorId: string) => Promise<void>
 }
 
 const RoomContext = createContext({} as Props)
 
 const RoomProvider = ({ children }) => {
+    const [roomName, setRoomName] = useState('')
     const [roomId, setRoomId] = useState('')
-
-    console.log('room_id_context', roomId)
 
     const joinRoom = async () => {
         if (roomId.trim() === '') return
@@ -29,8 +31,31 @@ const RoomProvider = ({ children }) => {
         }
     }
 
+    const createRoom = async (roomTitle: string, authorId: string) => {
+        try {
+            const roomReference = database.ref('rooms')
+            const firebaseRoom = await roomReference.push({
+                title: roomTitle,
+                authorId: authorId
+            })
+
+            handleNavigateTo(`/rooms/${firebaseRoom.key}`)
+        } catch (e) {
+            console.log('create room error', e)
+        }
+    }
+
     return (
-        <RoomContext.Provider value={{ roomId, setRoomId, joinRoom }}>
+        <RoomContext.Provider
+            value={{
+                roomId,
+                setRoomId,
+                roomName,
+                setRoomName,
+                joinRoom,
+                createRoom
+            }}
+        >
             {children}
         </RoomContext.Provider>
     )
