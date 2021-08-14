@@ -60,7 +60,7 @@ const useQuestion = (room: string) => {
     useEffect(() => {
         const rooms = database.ref(`rooms/${room}`)
 
-        rooms.once('value', (room) => {
+        rooms.on('value', (room) => {
             const databaseRoom = room.val()
 
             if (databaseRoom === null) return
