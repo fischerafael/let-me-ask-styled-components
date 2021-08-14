@@ -1,32 +1,7 @@
-import { FormEvent, useEffect, useState } from 'react'
+import { FormEvent } from 'react'
 import { MainButton } from '../components/atoms/Button'
 import { useAuth } from '../hooks/useAuth'
 import { useQuestion } from '../hooks/useQuestion'
-import { database } from '../services/firebase'
-
-type FirebaseQuestions = Record<
-    string,
-    {
-        author: {
-            name: string
-            avatar: string
-        }
-        content: string
-        isHighLighted: boolean
-        isAnswered: boolean
-    }
->
-
-interface IQuestions {
-    id: string
-    author: {
-        name: string
-        avatar: string
-    }
-    content: string
-    isHighLighted: boolean
-    isAnswered: boolean
-}
 
 export const PageRoom = ({ roomId }: { roomId: string }) => {
     const room = roomId
@@ -38,36 +13,6 @@ export const PageRoom = ({ roomId }: { roomId: string }) => {
         e.preventDefault()
         sendQuestion({ user, room, question: newQuestion })
     }
-
-    // const [title, setTitle] = useState('')
-    // const [questions, setQuestions] = useState<IQuestions[]>([])
-
-    // console.log(questions)
-
-    // useEffect(() => {
-    //     const rooms = database.ref(`rooms/${room}`)
-
-    //     rooms.once('value', (room) => {
-    //         const databaseRoom = room.val()
-    //         const firebaseQuestions: FirebaseQuestions =
-    //             databaseRoom.questions ?? {}
-
-    //         const questionsArray = Object.entries(firebaseQuestions).map(
-    //             ([key, value]) => {
-    //                 return {
-    //                     id: key,
-    //                     content: value.content,
-    //                     author: value.author,
-    //                     isAnswered: value.isAnswered,
-    //                     isHighLighted: value.isHighLighted
-    //                 }
-    //             }
-    //         )
-
-    //         setTitle(databaseRoom.title)
-    //         setQuestions(questionsArray)
-    //     })
-    // }, [room])
 
     return (
         <div className="bg-purple-50 w-screen h-screen flex flex-col items-center">
