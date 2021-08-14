@@ -17,7 +17,7 @@ const RoomProvider = ({ children }) => {
     const [roomName, setRoomName] = useState('')
     const [roomId, setRoomId] = useState('')
 
-    const joinRoom = async () => {
+    const joinRoom = async (): Promise<void> => {
         if (roomId.trim() === '') return
 
         try {
@@ -31,7 +31,10 @@ const RoomProvider = ({ children }) => {
         }
     }
 
-    const createRoom = async (roomTitle: string, authorId: string) => {
+    const createRoom = async (
+        roomTitle: string,
+        authorId: string
+    ): Promise<void> => {
         try {
             const roomReference = database.ref('rooms')
             const firebaseRoom = await roomReference.push({

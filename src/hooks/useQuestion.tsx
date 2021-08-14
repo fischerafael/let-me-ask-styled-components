@@ -9,7 +9,7 @@ import { database } from '../services/firebase'
 interface IQuestionContext {
     newQuestion: string
     setNewQuestion: (e: any) => void
-    sendQuestion: (data: ISendQuestion) => void
+    sendQuestion: (data: ISendQuestion) => Promise<void>
 }
 
 const QuestionContext = createContext({} as IQuestionContext)
@@ -17,7 +17,11 @@ const QuestionContext = createContext({} as IQuestionContext)
 const QuestionProvider = ({ children }) => {
     const [newQuestion, setNewQuestion] = useState('')
 
-    const sendQuestion = async ({ question, room, user }: ISendQuestion) => {
+    const sendQuestion = async ({
+        question,
+        room,
+        user
+    }: ISendQuestion): Promise<void> => {
         try {
             if (question.trim() === '')
                 throw new Error('Question should not be empty')

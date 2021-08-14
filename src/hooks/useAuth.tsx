@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
         return () => unsubscribe()
     }, [])
 
-    const signInWithGoogle = async () => {
+    const signInWithGoogle = async (): Promise<void> => {
         const provider = new firebase.auth.GoogleAuthProvider()
 
         const { user } = await auth.signInWithPopup(provider)
