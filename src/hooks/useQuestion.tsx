@@ -1,16 +1,15 @@
-import { createContext, useContext, useState } from 'react'
+import {
+    FirebaseQuestions,
+    IQuestions,
+    ISendQuestion
+} from '../entities/IQuestions'
+import { createContext, useContext, useEffect, useState } from 'react'
 import { database } from '../services/firebase'
-
-interface IQuestion {
-    question: string
-    user: { name: string; avatar: string }
-    room: string
-}
 
 interface IQuestionContext {
     newQuestion: string
     setNewQuestion: (e: any) => void
-    sendQuestion: (data: IQuestion) => void
+    sendQuestion: (data: ISendQuestion) => void
 }
 
 const QuestionContext = createContext({} as IQuestionContext)
@@ -18,7 +17,7 @@ const QuestionContext = createContext({} as IQuestionContext)
 const QuestionProvider = ({ children }) => {
     const [newQuestion, setNewQuestion] = useState('')
 
-    const sendQuestion = async ({ question, room, user }: IQuestion) => {
+    const sendQuestion = async ({ question, room, user }: ISendQuestion) => {
         try {
             if (question.trim() === '')
                 throw new Error('Question should not be empty')
@@ -52,8 +51,40 @@ const QuestionProvider = ({ children }) => {
     )
 }
 
-const useQuestion = () => {
-    return useContext(QuestionContext)
+const useQuestion = (room: string) => {
+    const useContextQuestion = useContext(QuestionContext)
+
+    const [title, setTitle] = useState('')
+    const [questions, setQuestions] = useState<IQuestions[]>([])
+
+    useEffect(() => {
+        const rooms = database.ref(`rooms/${room}`)
+
+        rooms.once('value', (room) => {
+            const databaseRoom = room.val()
+
+            if (databaseRoom === null) return
+
+            const firebaseQuestions: FirebaseQuestions = databaseRoom.questions
+
+            const questionsArray = Object.entries(firebaseQuestions).map(
+                ([key, value]) => {
+                    return {
+                        id: key,
+                        content: value.content,
+                        author: value.author,
+                        isAnswered: value.isAnswered,
+                        isHighLighted: value.isHighLighted
+                    }
+                }
+            )
+
+            setTitle(databaseRoom.title)
+            setQuestions(questionsArray)
+        })
+    }, [room])
+
+    return { ...useContextQuestion, questions, title }
 }
 
 export { useQuestion, QuestionProvider }
