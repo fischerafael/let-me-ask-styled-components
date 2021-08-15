@@ -7,8 +7,14 @@ import { useQuestion } from '../hooks/useQuestion'
 export const PageRoom = ({ roomId }: { roomId: string }) => {
     const room = roomId
     const { user } = useAuth()
-    const { newQuestion, setNewQuestion, sendQuestion, questions, title } =
-        useQuestion(room)
+    const {
+        newQuestion,
+        setNewQuestion,
+        sendQuestion,
+        questions,
+        title,
+        likeQuestion
+    } = useQuestion(room, user.id)
 
     const onSubmit = (e: FormEvent) => {
         e.preventDefault()
@@ -85,7 +91,21 @@ export const PageRoom = ({ roomId }: { roomId: string }) => {
                             author={question.author}
                             isAnswered={question.isAnswered}
                             isHighlighted={question.isHighLighted}
-                            action={''}
+                            likeCount={question.likeCount}
+                            action={
+                                <section>
+                                    <button
+                                        onClick={() =>
+                                            likeQuestion(
+                                                question.id,
+                                                question.likeId
+                                            )
+                                        }
+                                    >
+                                        Like
+                                    </button>
+                                </section>
+                            }
                         />
                     ))}
                 </section>
@@ -99,8 +119,10 @@ const Question = ({
     author,
     isAnswered = false,
     isHighlighted = false,
+    likeCount,
     action
 }) => {
+    console.log(likeCount)
     return (
         <article className="bg-white p-4 rounded-lg flex flex-col gap-4">
             <header className="text-sm">{content}</header>
@@ -112,7 +134,10 @@ const Question = ({
                     />
                     <span className="text-sm font-bold">{author.name}</span>
                 </section>
-                <section>{action}</section>
+                <section>
+                    <span>{likeCount}</span>
+                    {action}
+                </section>
             </footer>
         </article>
     )

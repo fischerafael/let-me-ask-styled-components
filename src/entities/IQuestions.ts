@@ -7,6 +7,9 @@ export interface IQuestions {
     content: string
     isHighLighted: boolean
     isAnswered: boolean
+    likes?: Record<string, { authorId: string }>
+    likeCount?: number
+    likeId?: string | undefined
 }
 
 export interface ISendQuestion {

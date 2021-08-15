@@ -55,7 +55,7 @@ const QuestionProvider = ({ children }) => {
     )
 }
 
-const useQuestion = (room: string) => {
+const useQuestion = (room: string, userId: string) => {
     const useContextQuestion = useContext(QuestionContext)
 
     const [title, setTitle] = useState('')
@@ -78,7 +78,11 @@ const useQuestion = (room: string) => {
                         content: value.content,
                         author: value.author,
                         isAnswered: value.isAnswered,
-                        isHighLighted: value.isHighLighted
+                        isHighLighted: value.isHighLighted,
+                        likeCount: Object.values(value.likes ?? {}).length,
+                        likeId: Object.entries(value.likes ?? {}).find(
+                            ([key, like]) => like.authorId === userId
+                        )?.[0]
                     }
                 }
             )
@@ -86,9 +90,34 @@ const useQuestion = (room: string) => {
             setTitle(databaseRoom.title)
             setQuestions(questionsArray)
         })
-    }, [room])
 
-    return { ...useContextQuestion, questions, title }
+        return () => {
+            rooms.off('value')
+        }
+    }, [room, userId])
+
+    const likeQuestion = async (
+        questionId: string,
+        likeId: string | undefined
+    ) => {
+        try {
+            if (likeId) {
+                await database
+                    .ref(
+                        `rooms/${room}/questions/${questionId}/likes/${likeId}`
+                    )
+                    .remove()
+                return
+            }
+            await database
+                .ref(`rooms/${room}/questions/${questionId}/likes`)
+                .push({ authorId: userId })
+        } catch (e) {
+            console.log('Error liking question', e)
+        }
+    }
+
+    return { ...useContextQuestion, questions, title, likeQuestion }
 }
 
 export { useQuestion, QuestionProvider }
