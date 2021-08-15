@@ -67,9 +67,9 @@ const useQuestion = (room: string) => {
         rooms.on('value', (room) => {
             const databaseRoom = room.val()
 
-            if (databaseRoom === null) return
+            if (databaseRoom?.questions === undefined) return
 
-            const firebaseQuestions: FirebaseQuestions = databaseRoom.questions
+            const firebaseQuestions: FirebaseQuestions = databaseRoom?.questions
 
             const questionsArray = Object.entries(firebaseQuestions).map(
                 ([key, value]) => {

@@ -1,5 +1,6 @@
 import { FormEvent } from 'react'
 import { MainButton } from '../components/atoms/Button'
+import { IQuestions } from '../entities/IQuestions'
 import { useAuth } from '../hooks/useAuth'
 import { useQuestion } from '../hooks/useQuestion'
 
@@ -78,10 +79,41 @@ export const PageRoom = ({ roomId }: { roomId: string }) => {
 
                 <section>
                     {questions?.map((question) => (
-                        <h1 key={question.id}>{question.content}</h1>
+                        <Question
+                            key={question.id}
+                            content={question.content}
+                            author={question.author}
+                            isAnswered={question.isAnswered}
+                            isHighlighted={question.isHighLighted}
+                            action={''}
+                        />
                     ))}
                 </section>
             </main>
         </div>
+    )
+}
+
+const Question = ({
+    content,
+    author,
+    isAnswered = false,
+    isHighlighted = false,
+    action
+}) => {
+    return (
+        <article className="bg-white p-4 rounded-lg flex flex-col gap-4">
+            <header className="text-sm">{content}</header>
+            <footer className="flex justify-between items-center">
+                <section className="flex gap-4 items-center">
+                    <img
+                        className="rounded-full w-12 h-12 border-2 border-purple-500"
+                        src={author.avatar}
+                    />
+                    <span className="text-sm font-bold">{author.name}</span>
+                </section>
+                <section>{action}</section>
+            </footer>
+        </article>
     )
 }
