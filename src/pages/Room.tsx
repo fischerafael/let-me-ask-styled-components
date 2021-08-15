@@ -77,7 +77,7 @@ export const PageRoom = ({ roomId }: { roomId: string }) => {
                     </section>
                 </form>
 
-                <section>
+                <section className="flex flex-col gap-4">
                     {questions?.map((question) => (
                         <Question
                             key={question.id}
