@@ -1,6 +1,6 @@
 import { FormEvent } from 'react'
+import { ThumbUpIcon } from '@heroicons/react/outline'
 import { MainButton } from '../components/atoms/Button'
-import { IQuestions } from '../entities/IQuestions'
 import { useAuth } from '../hooks/useAuth'
 import { useQuestion } from '../hooks/useQuestion'
 
@@ -91,19 +91,41 @@ export const PageRoom = ({ roomId }: { roomId: string }) => {
                             author={question.author}
                             isAnswered={question.isAnswered}
                             isHighlighted={question.isHighLighted}
-                            likeCount={question.likeCount}
                             action={
-                                <section>
-                                    <button
-                                        onClick={() =>
-                                            likeQuestion(
-                                                question.id,
-                                                question.likeId
-                                            )
-                                        }
-                                    >
-                                        Like
-                                    </button>
+                                <section className="flex items-end gap-1 font-bold">
+                                    {question.likeCount > 0 ? (
+                                        <>
+                                            <span className="text-purple-500">
+                                                {question.likeCount}
+                                            </span>
+                                            <button
+                                                onClick={() =>
+                                                    likeQuestion(
+                                                        question.id,
+                                                        question.likeId
+                                                    )
+                                                }
+                                            >
+                                                <ThumbUpIcon className="w-6 h-6 text-purple-500" />
+                                            </button>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <span className="text-purple-100">
+                                                {question.likeCount}
+                                            </span>
+                                            <button
+                                                onClick={() =>
+                                                    likeQuestion(
+                                                        question.id,
+                                                        question.likeId
+                                                    )
+                                                }
+                                            >
+                                                <ThumbUpIcon className="w-6 h-6 text-purple-100" />
+                                            </button>
+                                        </>
+                                    )}
                                 </section>
                             }
                         />
@@ -119,10 +141,8 @@ const Question = ({
     author,
     isAnswered = false,
     isHighlighted = false,
-    likeCount,
     action
 }) => {
-    console.log(likeCount)
     return (
         <article className="bg-white p-4 rounded-lg flex flex-col gap-4">
             <header className="text-sm">{content}</header>
@@ -134,10 +154,7 @@ const Question = ({
                     />
                     <span className="text-sm font-bold">{author.name}</span>
                 </section>
-                <section>
-                    <span>{likeCount}</span>
-                    {action}
-                </section>
+                <section>{action}</section>
             </footer>
         </article>
     )
