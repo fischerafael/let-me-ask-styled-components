@@ -21,19 +21,21 @@ export const TemplateRoom = ({
                 {header}
             </header>
 
-            <main className="max-w-screen-lg w-full h-5/6 overflow-y-auto flex flex-col gap-8 py-8 px-4">
-                <section className="w-full flex gap-4 items-center">
+            <main className="w-full h-5/6 overflow-y-auto flex flex-col items-center gap-8 py-8 px-4">
+                <section className="max-w-screen-lg w-full flex gap-4 items-center">
                     {title}
                 </section>
 
                 <form
                     onSubmit={onSubmit}
-                    className="w-full flex flex-col gap-8 items-center"
+                    className="max-w-screen-lg w-full flex flex-col gap-8 items-center"
                 >
                     {form}
                 </form>
 
-                <section className="flex flex-col gap-4">{questions}</section>
+                <section className="max-w-screen-lg w-full flex flex-col gap-4">
+                    {questions}
+                </section>
             </main>
         </div>
     )
