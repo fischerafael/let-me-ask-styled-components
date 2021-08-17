@@ -3,6 +3,7 @@ import { ThumbUpIcon } from '@heroicons/react/outline'
 import { MainButton } from '../components/atoms/Button'
 import { useAuth } from '../hooks/useAuth'
 import { useQuestion } from '../hooks/useQuestion'
+import { TemplateRoom } from '../components/templates/TemplateRoom'
 
 export const PageRoom = ({ roomId }: { roomId: string }) => {
     const room = roomId
@@ -22,20 +23,21 @@ export const PageRoom = ({ roomId }: { roomId: string }) => {
     }
 
     return (
-        <div className="bg-purple-50 w-screen h-screen flex flex-col items-center">
-            <header className="w-full border border-b h-1/6 flex justify-center px-4">
+        <TemplateRoom
+            header={
                 <section className="max-w-screen-lg w-full flex justify-between items-center">
                     <img src="/assets/logo.svg" alt="" className="w-28" />
+
                     <section>
                         <section></section>
+
                         <section>
                             <p>Sala #{roomId}</p>
                         </section>
                     </section>
                 </section>
-            </header>
-
-            <main className="max-w-screen-lg w-full h-5/6 overflow-y-auto flex flex-col gap-8 py-8 px-4">
+            }
+            title={
                 <section className="w-full flex gap-4 items-center">
                     <h2 className="font-bold text-xl">Sala {title}</h2>
                     {questions.length > 0 && (
@@ -44,11 +46,9 @@ export const PageRoom = ({ roomId }: { roomId: string }) => {
                         </span>
                     )}
                 </section>
-
-                <form
-                    onSubmit={onSubmit}
-                    className="w-full flex flex-col gap-8 items-center"
-                >
+            }
+            form={
+                <>
                     <textarea
                         value={newQuestion}
                         onChange={(e) => setNewQuestion(e.target.value)}
@@ -81,9 +81,11 @@ export const PageRoom = ({ roomId }: { roomId: string }) => {
                             Enviar Pergunta
                         </MainButton>
                     </section>
-                </form>
-
-                <section className="flex flex-col gap-4">
+                </>
+            }
+            onSubmit={onSubmit}
+            questions={
+                <>
                     {questions?.map((question) => (
                         <Question
                             key={question.id}
@@ -130,9 +132,9 @@ export const PageRoom = ({ roomId }: { roomId: string }) => {
                             }
                         />
                     ))}
-                </section>
-            </main>
-        </div>
+                </>
+            }
+        />
     )
 }
 
