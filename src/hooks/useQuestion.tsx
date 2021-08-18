@@ -61,6 +61,44 @@ const useQuestion = (room: string, userId: string) => {
     const [title, setTitle] = useState('')
     const [questions, setQuestions] = useState<IQuestions[]>([])
 
+    console.log('questions', questions)
+
+    const likeQuestion = async (
+        questionId: string,
+        likeId: string | undefined
+    ) => {
+        try {
+            if (likeId) {
+                await database
+                    .ref(
+                        `rooms/${room}/questions/${questionId}/likes/${likeId}`
+                    )
+                    .remove()
+                return
+            }
+            await database
+                .ref(`rooms/${room}/questions/${questionId}/likes`)
+                .push({ authorId: userId })
+        } catch (e) {
+            console.log('Error liking question', e)
+        }
+    }
+
+    const deleteQuestion = async (questionId: string) => {
+        if (window.confirm('Tem certeza que deseja excluir a pergunta?')) {
+            try {
+                await database
+                    .ref(`rooms/${room}/questions/${questionId}`)
+                    .remove()
+                setQuestions(
+                    questions.filter((question) => question.id !== questionId)
+                )
+            } catch (error) {
+                console.log('error deleting question', error)
+            }
+        }
+    }
+
     useEffect(() => {
         const rooms = database.ref(`rooms/${room}`)
 
@@ -96,28 +134,13 @@ const useQuestion = (room: string, userId: string) => {
         }
     }, [room, userId])
 
-    const likeQuestion = async (
-        questionId: string,
-        likeId: string | undefined
-    ) => {
-        try {
-            if (likeId) {
-                await database
-                    .ref(
-                        `rooms/${room}/questions/${questionId}/likes/${likeId}`
-                    )
-                    .remove()
-                return
-            }
-            await database
-                .ref(`rooms/${room}/questions/${questionId}/likes`)
-                .push({ authorId: userId })
-        } catch (e) {
-            console.log('Error liking question', e)
-        }
+    return {
+        ...useContextQuestion,
+        questions,
+        title,
+        likeQuestion,
+        deleteQuestion
     }
-
-    return { ...useContextQuestion, questions, title, likeQuestion }
 }
 
 export { useQuestion, QuestionProvider }

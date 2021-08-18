@@ -1,5 +1,5 @@
 import { FormEvent } from 'react'
-import { ThumbUpIcon } from '@heroicons/react/outline'
+import { ThumbUpIcon, TrashIcon } from '@heroicons/react/outline'
 import { MainButton } from '../components/atoms/Button'
 import { useAuth } from '../hooks/useAuth'
 import { useQuestion } from '../hooks/useQuestion'
@@ -14,7 +14,8 @@ export const PageRoom = ({ roomId }: { roomId: string }) => {
         sendQuestion,
         questions,
         title,
-        likeQuestion
+        likeQuestion,
+        deleteQuestion
     } = useQuestion(room, user.id)
 
     const onSubmit = (e: FormEvent) => {
@@ -94,40 +95,34 @@ export const PageRoom = ({ roomId }: { roomId: string }) => {
                             isAnswered={question.isAnswered}
                             isHighlighted={question.isHighLighted}
                             action={
-                                <section className="flex items-end gap-1 font-bold">
-                                    {question.likeCount > 0 ? (
-                                        <>
-                                            <span className="text-purple-500">
-                                                {question.likeCount}
-                                            </span>
-                                            <button
-                                                onClick={() =>
-                                                    likeQuestion(
-                                                        question.id,
-                                                        question.likeId
-                                                    )
-                                                }
-                                            >
-                                                <ThumbUpIcon className="w-6 h-6 text-purple-500" />
-                                            </button>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <span className="text-purple-100">
-                                                {question.likeCount}
-                                            </span>
-                                            <button
-                                                onClick={() =>
-                                                    likeQuestion(
-                                                        question.id,
-                                                        question.likeId
-                                                    )
-                                                }
-                                            >
-                                                <ThumbUpIcon className="w-6 h-6 text-purple-100" />
-                                            </button>
-                                        </>
+                                <section className="flex items-end gap-2 font-bold">
+                                    {question.likeCount > 0 && (
+                                        <span className="text-purple-500">
+                                            {question.likeCount}
+                                        </span>
                                     )}
+
+                                    <button
+                                        onClick={() =>
+                                            likeQuestion(
+                                                question.id,
+                                                question.likeId
+                                            )
+                                        }
+                                    >
+                                        {question.likeCount > 0 ? (
+                                            <ThumbUpIcon className="w-6 h-6 text-purple-500" />
+                                        ) : (
+                                            <ThumbUpIcon className="w-6 h-6 text-purple-100" />
+                                        )}
+                                    </button>
+                                    <button
+                                        onClick={() =>
+                                            deleteQuestion(question.id)
+                                        }
+                                    >
+                                        <TrashIcon className="w-6 h-6 text-pink-500" />
+                                    </button>
                                 </section>
                             }
                         />
