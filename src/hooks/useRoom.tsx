@@ -9,6 +9,7 @@ interface Props {
     setRoomName: (e: any) => void
     joinRoom: () => Promise<void>
     createRoom: (roomTitle: string, authorId: string) => Promise<void>
+    endRoom: (roomId: string) => Promise<void>
 }
 
 const RoomContext = createContext({} as Props)
@@ -48,6 +49,18 @@ const RoomProvider = ({ children }) => {
         }
     }
 
+    const endRoom = async (roomId: string) => {
+        try {
+            await database.ref(`rooms/${roomId}`).update({
+                endedAt: new Date()
+            })
+
+            handleNavigateTo('/')
+        } catch (e) {
+            console.log('error ending room', e)
+        }
+    }
+
     return (
         <RoomContext.Provider
             value={{
@@ -56,7 +69,8 @@ const RoomProvider = ({ children }) => {
                 roomName,
                 setRoomName,
                 joinRoom,
-                createRoom
+                createRoom,
+                endRoom
             }}
         >
             {children}
