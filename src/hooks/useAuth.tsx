@@ -1,13 +1,8 @@
 import { useRouter } from 'next/router'
 import { createContext, useContext, useEffect, useState } from 'react'
+import { IUser } from '../entities/IUser'
 import { auth, firebase } from '../services/firebase'
 import { handleNavigateTo } from '../utils/handleNavigateTo'
-
-interface IUser {
-    id: string
-    name: string
-    avatar: string
-}
 
 interface AuthContextProps {
     user: IUser | undefined
