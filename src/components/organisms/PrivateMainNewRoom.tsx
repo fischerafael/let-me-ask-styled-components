@@ -1,11 +1,9 @@
-import { FormEvent } from 'react'
-import { database } from '../../services/firebase'
 import { handleNavigateTo } from '../../utils/handleNavigateTo'
 import { MainButton } from '../atoms/Button'
 
 export const PrivateMainNewRoom = ({ onSubmit, onChange, value }) => {
     return (
-        <main className="bg-purple-50 h-screen w-full flex flex-col items-center justify-center px-4 gap-4">
+        <>
             <img src="/assets/logo.svg" alt="" className="w-32" />
             <form onSubmit={onSubmit} className="flex flex-col w-3/4 gap-4">
                 <input
@@ -24,6 +22,6 @@ export const PrivateMainNewRoom = ({ onSubmit, onChange, value }) => {
                     <span className="text-pink-400 font-bold">Clique aqui</span>
                 </a>
             </form>
-        </main>
+        </>
     )
 }

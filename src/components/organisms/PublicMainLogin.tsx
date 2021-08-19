@@ -18,12 +18,12 @@ export const PublicMainLogin = () => {
     }
 
     return (
-        <main className="bg-purple-50 h-screen w-full flex flex-col items-center justify-center px-4 gap-4">
+        <>
             <img src="/assets/logo.svg" alt="" className="w-32" />
             <form className="flex flex-col w-3/4 gap-4" onSubmit={onSubmit}>
                 <RedButton className="" onClick={onClick}>
                     <img src="/assets/google.svg" alt="" />
-                    Crie sua sala com o Google
+                    Criar com Google
                 </RedButton>
                 <div className="flex w-full items-center gap-4 py-4">
                     <hr className="w-full" />
@@ -40,6 +40,6 @@ export const PublicMainLogin = () => {
                 />
                 <MainButton>Entrar na sala</MainButton>
             </form>
-        </main>
+        </>
     )
 }

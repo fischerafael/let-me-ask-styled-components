@@ -39,7 +39,7 @@ export const PrivateRoomForm = ({
                 )}
 
                 <MainButton type="submit" disabled={!user}>
-                    Enviar Pergunta
+                    Enviar
                 </MainButton>
             </section>
         </>
